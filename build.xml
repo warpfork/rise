@@ -28,19 +28,19 @@
 	
 	
 	<target name="dist" depends="compile">
-		<jar jarfile="${dist}/${app}.jar" basedir="${build}">
+		<jar jarfile="${dist}/${app}.jar" basedir="${build}/main">
 			<manifest>
 				<!-- no main method is necessary because it's specified in the object tag of the embedding page -->
 				<attribute name="Implementation-Version" value="${version}"/>
 				<attribute name="Git-Commit" value="${git-version}"/>
 				<attribute name="Build-Date" value="${builddate}"/>
 			</manifest>
-			<fileset dir="${inc}"/><!-- in most projects, I would ship this directory in the tar, but not in the jar.  Applets are different because things actually need to fit in one darn jar as an honest-to-god resource. -->
-			<zipfileset src="${lib}/beard.jar" includes="**/*.class"/>
+			<zipfileset prefix="res/${app}" dir="${res}" includes="**"/>
+			<zipfileset src="${lib}/beard.jar" includes="**/*.class res/**"/>
 		</jar>
 		<symlink resource="${app}.jar" link="${dist}/${app}-${timemark}.jar"/>
 		<delete file="${dist}/index.html"/>
-		<copy tofile="${dist}/index.html" file="pre/index.html"/><!-- FIXME hardcoded hack, query: the meaning of dat in this modern world -->
+		<copy tofile="${dist}/index.html" file="${pre}/index.html"/>
 		<replace file="${dist}/index.html">
 			<replacefilter
 				      token="@VERSION@" 
