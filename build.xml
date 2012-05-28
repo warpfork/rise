@@ -43,8 +43,8 @@
 		<copy tofile="${dist}/index.html" file="${pre}/index.html"/>
 		<replace file="${dist}/index.html">
 			<replacefilter
-				      token="@VERSION@" 
-				      value="-${timemark}"/>
+				token="@VERSION@"
+				value="-${timemark}"/>
 		</replace>
 	</target>
 	
