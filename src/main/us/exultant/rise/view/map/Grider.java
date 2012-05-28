@@ -1,5 +1,7 @@
 package us.exultant.rise.view.map;
 
+import us.exultant.beard.*;
+
 public class Grider {
 	public Grider(int $width, int $height) {
 		this.$width = $width;
@@ -9,12 +11,13 @@ public class Grider {
 	private final int $width;
 	private final int $height;
 	
-	public StringBuilder jotElementGenerator(StringBuilder $) {
-		$.append("$('<div>')");
-		$.append(".attr('id',		'rise-map')");
-		$.append(".css('width',		'"+$width+"')");
-		$.append(".css('height',	'"+$height+"')");
-		$.append(".css('border',	'1px solid #999')");
-		return $;
+	public void jotElementGenerator(Beard $beard, String $parent) {
+		$beard.eval("$('"+$parent+"').append("
+			+"$('<div>')"
+			+".attr('id',		'rise-map')"
+			+".css('width',		'"+$width+"')"
+			+".css('height',	'"+$height+"')"
+			+".css('border',	'1px solid #999')"
+		+");");
 	}
 }
