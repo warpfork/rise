@@ -20,8 +20,8 @@
 	
 	
 	<target name="compile" depends="init">
-		<exusJavacStrict
-			classes="us/exultant/rise/**"
+		<exusJavac
+			classes="us/exultant/rise/exe/Applet.java"
 			depends="${lib}/beard.jar"
 		/>
 	</target>
