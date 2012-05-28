@@ -9,6 +9,8 @@ public class Applet extends JApplet {
 		add(new JLabel("j!"), BorderLayout.CENTER);
 		
 		Beard $beard = new Beard(this);
-		$beard.eval("document.getElementById('main').innerHTML='ohai!';");
+		$beard.normalizePage();
+		
+		$beard.eval("$('#main').html('ohai!');");
 	}
 }
