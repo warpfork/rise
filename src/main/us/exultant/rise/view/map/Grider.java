@@ -39,38 +39,79 @@ public class Grider {
 				+"$('<div>')"
 				+".attr('id',		'"+ID+"-plate')"
 				+".css('position',	'relative')"
-				+".css('top',		'-100')"
-				+".css('left',		'-100')"
+				+".css('left',		'-70')"
+				+".css('top',		'-68')"
 		+");");
 		
 		// the clear overlay that gathers mouse events ("hot")
 		$beard.eval("$('#"+ID+"-plate').append("
+				+"$('<map>')"
+				+".attr('id',		'"+ID+"-hotmap')"
+		+");");
+		$beard.eval("$('#"+ID+"-plate').append("
 				+"$('<img>')"
 				+".attr('id',		'"+ID+"-hot')"
+				+".attr('usemap',	'#"+ID+"-hotmap')"
+				+".css('position',	'relative')"
+				+".css('z-index',	'10')"
 				+".attr('src',		'"+$png_trans+"')"
-				+".attr('width',	'"+$width+"')"
-				+".attr('height',	'"+$height+"')"
-		+");");	//TODO: a crapload of work with map and area tags
+				+".attr('width',	'10000')"
+				+".attr('height',	'10000')"
+		+");");
 		
 		// hexagons!
+		String $did;
 		for (int $r = 0; $r < 9; $r++) {
 			for (int $c = 0; $c < 12; $c+=2) {
+				// alt-0 column
+				$did = ID+"-d-"+$c+"-"+$r;
 				$beard.eval("$('#"+ID+"-plate').append("
 						+"$('<img>')"
-						+".attr('id',		'"+ID+"-d-"+$c+"-"+$r+"')"
+						+".attr('id',		'"+$did+"')"
 						+".attr('src',		'"+$png_hex+"')"
 						+".css('position',	'absolute')"
-						+".css('top',		'"+(54*$r)+"')"
 						+".css('left',		'"+(48*$c)+"')"
+						+".css('top',		'"+(54*$r)+"')"
+				+");");
+				$beard.eval("$('#"+ID+"-hotmap').append("
+						+"$('<area>')"
+						+".attr('id',		'"+ID+"-hotd-"+$c+"-"+$r+"')"
+						+".attr('shape',	'polygon')"
+						+".attr('coords',	'"
+							+( 16+48*$c)+","+(  4+54*$r)+", "
+							+( 47+48*$c)+","+(  4+54*$r)+", "
+							+( 63+48*$c)+","+( 30+54*$r)+", "
+							+( 47+48*$c)+","+( 57+54*$r)+", "
+							+( 16+48*$c)+","+( 57+54*$r)+", "
+							+(    48*$c)+","+( 30+54*$r)+"')"
+						+".click(function(){alert('"+$did+"');})"
+						+".mouseover(function(){$('#"+$did+"').css('border','1px solid');})"
+						+".mouseout( function(){$('#"+$did+"').css('border','');})"
 				+");");
 				
+				// alt-1 column
+				$did = ID+"-d-"+($c+1)+"-"+$r;
 				$beard.eval("$('#"+ID+"-plate').append("
 						+"$('<img>')"
-						+".attr('id',		'"+ID+"-d-"+$c+1+"-"+$r+"')"
+						+".attr('id',		'"+$did+"')"
 						+".attr('src',		'"+$png_hex+"')"
 						+".css('position',	'absolute')"
-						+".css('top',		'"+(27+54*$r)+"')"
 						+".css('left',		'"+(48+48*$c)+"')"
+						+".css('top',		'"+(27+54*$r)+"')"
+				+");");
+				$beard.eval("$('#"+ID+"-hotmap').append("
+						+"$('<area>')"
+						+".attr('id',		'"+ID+"-hotd-"+$c+"-"+$r+"')"
+						+".attr('shape',	'polygon')"
+						+".attr('coords',	'"
+							+( 64+48*$c)+","+( 31+54*$r)+", "
+							+( 95+48*$c)+","+( 31+54*$r)+", "
+							+(111+48*$c)+","+( 57+54*$r)+", "
+							+( 95+48*$c)+","+( 84+54*$r)+", "
+							+( 64+48*$c)+","+( 84+54*$r)+", "
+							+( 48+48*$c)+","+( 57+54*$r)+"')"
+						+".mouseover(function(){$('#"+$did+"').css('border','1px solid');})"
+						+".mouseout( function(){$('#"+$did+"').css('border','');})"
 				+");");
 			}
 		}
