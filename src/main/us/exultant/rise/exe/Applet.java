@@ -14,7 +14,7 @@ public class Applet extends JApplet {
 		
 		$beard.eval("$('#main').html('ohai!');");
 		
-		Grider $grider = new Grider(400,300);
+		Grider $grider = new Grider(800,600);
 		$grider.jotElementGenerator($beard, "#main");
 	}
 	private Beard $beard;

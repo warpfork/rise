@@ -9,10 +9,14 @@ public class Grider {
 	public Grider(int $width, int $height) {
 		this.$width = $width;
 		this.$height = $height;
+		this.$cols = $width/48+2;
+		this.$rows = $height/54+2;
 	}
-
+	
 	private final int $width;
 	private final int $height;
+	private final int $rows;
+	private final int $cols;
 	private final String ID = "rise-map";
 	
 	public void jotElementGenerator(Beard $beard, String $parent) {
@@ -55,14 +59,14 @@ public class Grider {
 				+".css('position',	'relative')"
 				+".css('z-index',	'10')"
 				+".attr('src',		'"+$png_trans+"')"
-				+".attr('width',	'10000')"
-				+".attr('height',	'10000')"
+				+".attr('width',	'"+($width+200)+"')"
+				+".attr('height',	'"+($height+200)+"')"
 		+");");
 		
 		// hexagons!
 		String $did;
-		for (int $r = 0; $r < 9; $r++) {
-			for (int $c = 0; $c < 12; $c+=2) {
+		for (int $r = 0; $r < $rows; $r++) {
+			for (int $c = 0; $c < $cols; $c+=2) {
 				// alt-0 column
 				$did = ID+"-d-"+$c+"-"+$r;
 				$beard.eval("$('#"+ID+"-plate').append("
@@ -110,6 +114,7 @@ public class Grider {
 							+( 95+48*$c)+","+( 84+54*$r)+", "
 							+( 64+48*$c)+","+( 84+54*$r)+", "
 							+( 48+48*$c)+","+( 57+54*$r)+"')"
+						+".click(function(){alert('"+$did+"');})"
 						+".mouseover(function(){$('#"+$did+"').css('border','1px solid');})"
 						+".mouseout( function(){$('#"+$did+"').css('border','');})"
 				+");");
