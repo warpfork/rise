@@ -52,6 +52,7 @@ public class Grider {
 		$beard.eval("$('#"+ID+"-plate').append("
 				+"$('<map>')"
 				+".attr('id',		'"+ID+"-hotmap')"
+				+".attr('name',		'"+ID+"-hotmap')"
 		+");");
 		$beard.eval("$('#"+ID+"-plate').append("
 				+"$('<img>')"
