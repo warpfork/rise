@@ -14,8 +14,14 @@ public class Applet extends JApplet {
 		
 		$beard.eval("$('#main').html('ohai!');");
 		
-		Grider $grider = new Grider(800,600);
-		$grider.jotElementGenerator($beard, "#main");
+		$beard.eval("$('#main').append("
+				+"$('<div>')"
+				+".attr('id',		'rise-map-placer')"
+				+".css('margin',	'5em')"
+		+");");
+		
+		Grider $grider = new Grider(1200,800);
+		$grider.jotElementGenerator($beard, "#rise-map-placer");
 	}
 	private Beard $beard;
 }

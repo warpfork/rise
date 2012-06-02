@@ -34,6 +34,7 @@ public class Grider {
 				+".attr('id',		'"+ID+"')"
 				+".css('width',		'"+$width+"')"
 				+".css('height',	'"+$height+"')"
+				+".css('margin',	'auto')"
 				+".css('border',	'1px solid #999')"
 				+".css('overflow',	'hidden')"
 		+");");
