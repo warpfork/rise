@@ -1,0 +1,89 @@
+// observations:
+//   - the bridge performance is... really not good.  you're going to max out at like 1k operations per second.
+//   - the hit from using jquery as an element constructor is bad enough that i'm going to pay attention to it.
+//   - yes, there's some jit takeoff time required at the front there; we do see better performance later on.
+// overall, the bridge performance is more than enough for most webapps, but if you try to build a realtime game out of it or anything that involves many many sprites, you're going to feel it, and you're going to want to make some fairly large amount of your rendering lifting happen in javascript.
+
+Java Plug-in 10.0.0.13
+Using JRE version 1.7.0_02-b13 Java HotSpot(TM) 64-Bit Server VM
+Chrome 19.0.1084.52
+bridged ops/sec: 498.653328203155
+bridged ops/sec: 625.4826254826255
+bridged ops/sec: 662.2381195707716
+bridged ops/sec: 648.6486486486486
+bridged ops/sec: 640.9495548961424
+bridged ops/sec: 445.05494505494505
+bridged ops/sec: 686.4406779661017
+bridged ops/sec: 785.9308671922377
+bridged ops/sec: 730.9644670050761
+bridged ops/sec: 738.8825541619157
+batched ops/sec: 24923.076923076926
+batched ops/sec: 28173.91304347826
+batched ops/sec: 28800.0
+batched ops/sec: 28173.91304347826
+batched ops/sec: 27000.0
+batched ops/sec: 27574.468085106382
+batched ops/sec: 28173.91304347826
+batched ops/sec: 22344.827586206895
+batched ops/sec: 24452.830188679247
+batched ops/sec: 29454.545454545456
+batched direct ops/sec: 38117.647058823524
+batched direct ops/sec: 35027.02702702703
+batched direct ops/sec: 38117.647058823524
+batched direct ops/sec: 37028.57142857143
+batched direct ops/sec: 36000.0
+batched direct ops/sec: 37028.57142857143
+batched direct ops/sec: 37028.57142857143
+batched direct ops/sec: 37028.57142857143
+batched direct ops/sec: 37028.57142857143
+batched direct ops/sec: 36000.0
+bridged direct ops/sec: 917.1974522292993
+bridged direct ops/sec: 896.8858131487889
+bridged direct ops/sec: 1005.4305663304888
+bridged direct ops/sec: 959.9999999999999
+bridged direct ops/sec: 1071.0743801652893
+bridged direct ops/sec: 1087.2483221476512
+bridged direct ops/sec: 998.4591679506933
+bridged direct ops/sec: 1003.8729666924866
+bridged direct ops/sec: 1177.1117166212534
+bridged direct ops/sec: 1062.295081967213
+bridged ops/sec: 765.9574468085107
+bridged ops/sec: 733.0316742081448
+bridged ops/sec: 740.5714285714286
+bridged ops/sec: 789.2813641900123
+bridged ops/sec: 750.0
+bridged ops/sec: 749.5662232504337
+bridged ops/sec: 745.6846950517837
+bridged ops/sec: 770.0534759358288
+bridged ops/sec: 744.3997702469844
+bridged ops/sec: 747.4048442906575
+batched ops/sec: 21966.101694915254
+batched ops/sec: 19343.283582089553
+batched ops/sec: 27574.468085106382
+batched ops/sec: 22736.842105263157
+batched ops/sec: 28800.0
+batched ops/sec: 28800.0
+batched ops/sec: 28800.0
+batched ops/sec: 27574.468085106382
+batched ops/sec: 20903.225806451614
+batched ops/sec: 30139.53488372093
+batched direct ops/sec: 34105.26315789474
+batched direct ops/sec: 35027.02702702703
+batched direct ops/sec: 38117.647058823524
+batched direct ops/sec: 38117.647058823524
+batched direct ops/sec: 37028.57142857143
+batched direct ops/sec: 40500.0
+batched direct ops/sec: 39272.72727272727
+batched direct ops/sec: 37028.57142857143
+batched direct ops/sec: 39272.72727272727
+batched direct ops/sec: 39272.72727272727
+bridged direct ops/sec: 984.8024316109422
+bridged direct ops/sec: 1040.9638554216867
+bridged direct ops/sec: 1018.8679245283018
+bridged direct ops/sec: 1045.1612903225807
+bridged direct ops/sec: 1085.427135678392
+bridged direct ops/sec: 1046.8497576736672
+bridged direct ops/sec: 1051.948051948052
+bridged direct ops/sec: 996.9230769230769
+bridged direct ops/sec: 1005.4305663304888
+bridged direct ops/sec: 1307.7699293642786

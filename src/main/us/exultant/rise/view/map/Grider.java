@@ -123,4 +123,80 @@ public class Grider {
 			}
 		}
 	}
+	
+	public void derp(Beard $beard) {
+		long $start = X.time();
+		for (int $r = 0; $r < $rows; $r++)
+			for (int $c = 0; $c < $cols; $c++)
+				$beard.eval("$('#"+ID+"-d-"+$c+"-"+$r+"').css('border','1px solid #A00');");
+		for (int $r = 0; $r < $rows; $r++)
+			for (int $c = 0; $c < $cols; $c++)
+				$beard.eval("$('#"+ID+"-d-"+$c+"-"+$r+"').css('border','1px solid #A0A');");
+		for (int $r = 0; $r < $rows; $r++)
+			for (int $c = 0; $c < $cols; $c++)
+				$beard.eval("$('#"+ID+"-d-"+$c+"-"+$r+"').css('border','1px solid #00A');");
+		long $taken = X.time() - $start;
+		double $opsec = ($rows*$cols*3.0)/($taken/1000.0);
+		X.saye("bridged ops/sec: "+$opsec);
+	}
+	
+	public void derp2(Beard $beard) {
+		long $start = X.time();
+		$beard.eval(
+				 "for (r = 0; r < "+$rows+"; r++) "
+				+"for (c = 0; c < "+$cols+"; c++) "
+				+"$('#"+ID+"-d-'+c+'-'+r).css('border','1px solid #A00');"
+		);
+		$beard.eval(
+				 "for (r = 0; r < "+$rows+"; r++) "
+				+"for (c = 0; c < "+$cols+"; c++) "
+				+"$('#"+ID+"-d-'+c+'-'+r).css('border','1px solid #A0A');"
+		);
+		$beard.eval(
+				 "for (r = 0; r < "+$rows+"; r++) "
+				+"for (c = 0; c < "+$cols+"; c++) "
+				+"$('#"+ID+"-d-'+c+'-'+r).css('border','1px solid #00A');"
+		);
+		long $taken = X.time() - $start;
+		double $opsec = ($rows*$cols*3.0)/($taken/1000.0);
+		X.saye("batched ops/sec: "+$opsec);
+	}
+	
+	public void derp3(Beard $beard) {
+		long $start = X.time();
+		$beard.eval(
+				 "for (r = 0; r < "+$rows+"; r++) "
+				+"for (c = 0; c < "+$cols+"; c++) "
+				+"document.getElementById('"+ID+"-d-'+c+'-'+r).style.border='1px solid #A00';"
+		);
+		$beard.eval(
+				 "for (r = 0; r < "+$rows+"; r++) "
+				+"for (c = 0; c < "+$cols+"; c++) "
+				+"document.getElementById('"+ID+"-d-'+c+'-'+r).style.border='1px solid #A0A';"
+		);
+		$beard.eval(
+				 "for (r = 0; r < "+$rows+"; r++) "
+				+"for (c = 0; c < "+$cols+"; c++) "
+				+"document.getElementById('"+ID+"-d-'+c+'-'+r).style.border='1px solid #00A';"
+		);
+		long $taken = X.time() - $start;
+		double $opsec = ($rows*$cols*3.0)/($taken/1000.0);
+		X.saye("batched direct ops/sec: "+$opsec);	// broke
+	}
+	
+	public void derp4(Beard $beard) {
+		long $start = X.time();
+		for (int $r = 0; $r < $rows; $r++)
+			for (int $c = 0; $c < $cols; $c++)
+				$beard.eval("document.getElementById('"+ID+"-d-"+$c+"-"+$r+"').style.border='1px solid #A00';");
+		for (int $r = 0; $r < $rows; $r++)
+			for (int $c = 0; $c < $cols; $c++)
+				$beard.eval("document.getElementById('"+ID+"-d-"+$c+"-"+$r+"').style.border='1px solid #A0A';");
+		for (int $r = 0; $r < $rows; $r++)
+			for (int $c = 0; $c < $cols; $c++)
+				$beard.eval("document.getElementById('"+ID+"-d-"+$c+"-"+$r+"').style.border='1px solid #00A';");
+		long $taken = X.time() - $start;
+		double $opsec = ($rows*$cols*3.0)/($taken/1000.0);
+		X.saye("bridged direct ops/sec: "+$opsec);
+	}
 }
