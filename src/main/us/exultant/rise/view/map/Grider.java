@@ -19,15 +19,19 @@ public class Grider {
 	private final int $cols;
 	private final String ID = "rise-map";
 	
-	public void jotImages(Beard $beard) {
-		
+	public void jotAttachImages(Beard $beard) {
+		try {
+			String $png_hex = BeardUtil.formatDataForEmbed("image/png", IOForge.readResourceRaw("res/rise/map/hex.png"));
+			$beard.eval("$('head').append($('<style>').html('."+ID+"-img-hex {background-image: url("+$png_hex+");}'));");
+		} catch (IOException $e) {
+			throw new MajorBug("malformed jar, missing resource", $e);
+		}
 	}
 	
 	public void jotElementGenerator(Beard $beard, String $parent) {
-		String $png_trans, $png_hex;
+		String $png_trans;
 		try {
 			$png_trans =	BeardUtil.formatDataForEmbed("image/png", IOForge.readResourceRaw("res/rise/trans.png"));
-			$png_hex =	BeardUtil.formatDataForEmbed("image/png", IOForge.readResourceRaw("res/rise/map/hex.png"));
 		} catch (IOException $e) {
 			throw new MajorBug("malformed jar, missing resource", $e);
 		}
@@ -76,12 +80,14 @@ public class Grider {
 				// alt-0 column
 				$did = ID+"-d-"+$c+"-"+$r;
 				$beard.eval("$('#"+ID+"-plate').append("
-						+"$('<img>')"
+						+"$('<div>')"
 						+".attr('id',		'"+$did+"')"
-						+".attr('src',		'"+$png_hex+"')"
+						+".attr('class',	'"+ID+"-img-hex')"
 						+".css('position',	'absolute')"
 						+".css('left',		'"+(48*$c)+"')"
 						+".css('top',		'"+(54*$r)+"')"
+						+".css('width',		'64')"
+						+".css('height',	'64')"
 				+");");
 				$beard.eval("$('#"+ID+"-hotmap').append("
 						+"$('<area>')"
@@ -102,12 +108,14 @@ public class Grider {
 				// alt-1 column
 				$did = ID+"-d-"+($c+1)+"-"+$r;
 				$beard.eval("$('#"+ID+"-plate').append("
-						+"$('<img>')"
+						+"$('<div>')"
 						+".attr('id',		'"+$did+"')"
-						+".attr('src',		'"+$png_hex+"')"
+						+".attr('class',	'"+ID+"-img-hex')"
 						+".css('position',	'absolute')"
 						+".css('left',		'"+(48+48*$c)+"')"
 						+".css('top',		'"+(27+54*$r)+"')"
+						+".css('width',		'64')"
+						+".css('height',	'64')"
 				+");");
 				$beard.eval("$('#"+ID+"-hotmap').append("
 						+"$('<area>')"

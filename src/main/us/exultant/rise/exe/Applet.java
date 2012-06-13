@@ -21,6 +21,7 @@ public class Applet extends JApplet {
 		+");");
 		
 		Grider $grider = new Grider(1200,800);
+		$grider.jotAttachImages($beard);
 		$grider.jotElementGenerator($beard, "#rise-map-placer");
 		
 	}
