@@ -1,6 +1,5 @@
 package us.exultant.rise.exe;
 
-import us.exultant.ahs.util.*;
 import us.exultant.beard.*;
 import us.exultant.rise.view.map.*;
 import java.awt.*;
@@ -24,20 +23,6 @@ public class Applet extends JApplet {
 		Grider $grider = new Grider(1200,800);
 		$grider.jotElementGenerator($beard, "#rise-map-placer");
 		
-		while (true) {
-			for (int $i = 0; $i < 10; $i++)
-				$grider.derp($beard);
-			X.chill(1000);
-			for (int $i = 0; $i < 10; $i++)
-				$grider.derp2($beard);
-			X.chill(1000);
-			for (int $i = 0; $i < 10; $i++)
-				$grider.derp3($beard);
-			X.chill(1000);
-			for (int $i = 0; $i < 10; $i++)
-				$grider.derp4($beard);
-			X.chill(1000);
-		}
 	}
 	private Beard $beard;
 }
