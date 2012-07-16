@@ -19,6 +19,7 @@ public class Applet extends JApplet {
 		
 		// prove beard works and can touch js at all
 		$beard.eval("$('#main').html('ohai!');");
+		$beard.eval("$('#main').attr('tabindex', 1);");
 		
 		
 		
