@@ -22,7 +22,7 @@
 	<target name="compile" depends="init">
 		<exusJavac
 			classes="us/exultant/rise/exe/Applet.java"
-			depends="${lib}/beard.jar : ${lib}/ahslib-core.jar"
+			depends="${lib}/beard/beard.jar : ${lib}/ahslib/ahslib-core.jar : ${lib}/ahslib/ahslib-thread.jar"
 		/>
 	</target>
 	
@@ -36,8 +36,9 @@
 				<attribute name="Build-Date" value="${builddate}"/>
 			</manifest>
 			<zipfileset prefix="res/${app}" dir="${res}" includes="**"/>
-			<zipfileset src="${lib}/beard.jar" includes="**/*.class res/**"/>
-			<zipfileset src="${lib}/ahslib-core.jar" includes="**/*.class res/**"/>
+			<zipfileset src="${lib}/beard/beard.jar" includes="**/*.class res/**"/>
+			<zipfileset src="${lib}/ahslib/ahslib-core.jar" includes="**/*.class res/**"/>
+			<zipfileset src="${lib}/ahslib/ahslib-thread.jar" includes="**/*.class res/**"/>
 		</jar>
 		<symlink resource="${app}.jar" link="${dist}/${app}-${timemark}.jar"/>
 		<delete file="${dist}/index.html"/>
