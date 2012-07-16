@@ -4,5 +4,5 @@
 	mdm = dependency
 [submodule "lib/beard"]
 	path = lib/beard
-	url = https://raw.github.com/heavenlyhash-releases/beard-releases/master/v0.2.0.git
+	url = https://raw.github.com/heavenlyhash-releases/beard-releases/master/v0.2.1.git
 	mdm = dependency
