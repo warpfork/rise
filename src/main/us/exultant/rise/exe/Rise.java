@@ -5,7 +5,7 @@ import us.exultant.ahs.thread.*;
 import us.exultant.beard.*;
 import us.exultant.rise.view.map.*;
 
-public class Applet implements Beardlet {
+public class Rise implements Beardlet {
 	public void start(final Beard $beard) {
 		$beard.normalizePage();
 		

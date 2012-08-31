@@ -21,7 +21,7 @@
 	
 	<target name="compile" depends="init">
 		<exusJavac
-			classes="us/exultant/rise/exe/Applet.java"
+			classes="us/exultant/rise/exe/Rise.java"
 			depends="${lib}/beard/beard.jar : ${lib}/ahslib/ahslib-core.jar : ${lib}/ahslib/ahslib-thread.jar"
 		/>
 	</target>
