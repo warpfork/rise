@@ -6,3 +6,7 @@
 	path = lib/beard
 	url = https://raw.github.com/heavenlyhash-releases/beard-releases/master/v0.3.0.git
 	mdm = dependency
+[submodule "lib/javafxrt"]
+	path = lib/javafxrt
+	url = https://raw.github.com/mdm-releases/javafxrt-releases/master/v1.7.0_06.git
+	mdm = dependency
