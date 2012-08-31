@@ -1,20 +1,12 @@
 package us.exultant.rise.exe;
 
 import us.exultant.ahs.core.*;
-import us.exultant.ahs.util.*;
 import us.exultant.ahs.thread.*;
 import us.exultant.beard.*;
 import us.exultant.rise.view.map.*;
-import java.awt.*;
-import javax.swing.*;
 
-public class Applet extends JApplet {
-	public void init() {
-		// flash some signs that we're alive at all
-		add(new JLabel("j!"), BorderLayout.CENTER);
-		
-		// set up beard
-		$beard = new Beard(this);
+public class Applet implements Beardlet {
+	public void start(final Beard $beard) {
 		$beard.normalizePage();
 		
 		// prove beard works and can touch js at all
@@ -48,31 +40,9 @@ public class Applet extends JApplet {
 		
 	}
 	
-	private Beard $beard;
 	private WorkScheduler $scheduler;
 	
-	public void start() {
-		/* Fun fact about applet threading models:
-		 * if you don't return from this method, you'll never get a stop or a destroy event.
-		 * Which means you'll get a violent ThreadDeath thrown instead.
-		 * Which will almost certainly cause something very bad to happen...
-		 * monitors in inconsistent state, the works.
-		 * Basically your applet will crash and the entire vm will probably die.
-		 * 
-		 * So return from the start method.  And all the lifecycle methods.
-		 * Start a thread somewhere.  Do your work in that.
-		 * Make sure it's stopped by the destroy event.
-		 * 
-		 * And do NOT use WorkManager.getDefaultScheduler() in an Applet.  (Or any other static thread pool.)
-		 * If you stop it, you're messing things up; if you don't stop it, you're crashing.
-		 * It's a no-win situation.
-		 * Make your own WorkScheduler per Applet.
-		 */
-	}
-	
-	public void stop() {}
-	
-	public void destroy() {
+	public void stop() {
 		$scheduler.stop(true);
 	}
 }
