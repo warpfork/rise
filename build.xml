@@ -40,7 +40,9 @@
 			<zipfileset src="${lib}/ahslib/ahslib-core.jar" includes="**/*.class res/**"/>
 			<zipfileset src="${lib}/ahslib/ahslib-thread.jar" includes="**/*.class res/**"/>
 		</jar>
-		<copy todir="${dist}/lib/javafxrt/"><fileset dir="${lib}/javafxrt/" includes="*.jar"/></copy>
+		<copy todir="${dist}/lib/">
+			<fileset dir="${lib}/javafxrt/" includes="*.jar"/>
+		</copy>
 		<symlink resource="${app}.jar" link="${dist}/${app}-${timemark}.jar"/>
 		<delete file="${dist}/index.html"/>
 		<copy tofile="${dist}/index.html" file="${pre}/index.html"/>
