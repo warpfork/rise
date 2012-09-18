@@ -1,7 +1,3 @@
-[submodule "lib/beard"]
-	path = lib/beard
-	url = https://raw.github.com/heavenlyhash-releases/beard-releases/master/v0.3.0.git
-	mdm = dependency
 [submodule "lib/javafxrt"]
 	path = lib/javafxrt
 	url = https://raw.github.com/mdm-releases/javafxrt-releases/master/v1.7.0_06.git
@@ -9,4 +5,8 @@
 [submodule "lib/ahslib"]
 	path = lib/ahslib
 	url = https://raw.github.com/heavenlyhash-releases/ahslib-releases/master/v0.6.4.git
+	mdm = dependency
+[submodule "lib/beard"]
+	path = lib/beard
+	url = https://raw.github.com/heavenlyhash-releases/beard-releases/master/v0.4.0.git
 	mdm = dependency
