@@ -22,13 +22,13 @@
 	<target name="compile" depends="init">
 		<exusJavac
 			classes="us/exultant/rise/exe/Rise.java"
-			depends="${lib}/beard/beard.jar : ${lib}/ahslib/ahslib-core.jar : ${lib}/ahslib/ahslib-thread.jar"
+			depends="${lib}/beard/beard.jar : ${lib}/ahslib/ahslib-core.jar : ${lib}/ahslib/ahslib-thread.jar : ${lib}/javafxrt/jfxrt.jar"
 		/>
 	</target>
 	
 	
-	<target name="dist" depends="compile">
-		<exusPack destfile="${dist}/${app}.jar">
+	<target name="dist-web" depends="compile">
+		<exusPack destfile="${dist}/${app}-web.jar">
 			<fileset file="${build}/main/**"/>
 			<zipfileset prefix="res/${app}" dir="${res}" includes="**"/>
 			<zipfileset src="${lib}/beard/beard.jar" includes="**/*.class res/**"/>
@@ -36,18 +36,34 @@
 			<zipfileset src="${lib}/ahslib/ahslib-thread.jar" includes="**/*.class res/**"/>
 			<zipfileset src="${lib}/slf4j/slf4j-api.jar" includes="**/*.class res/**"/>
 		</exusPack>
-		<copy todir="${dist}/lib/">
-			<fileset dir="${lib}/javafxrt/" includes="*.jar"/>
+		<symlink resource="${app}-web.jar" link="${dist}/${app}-web-${timemark}.jar"/>
+		<copy
+			file="${pre}/index.html"
+			tofile="${dist}/index.html"
+			overwrite="true"
+			><filterchain><expandproperties/></filterchain>
 		</copy>
-		<symlink resource="${app}.jar" link="${dist}/${app}-${timemark}.jar"/>
-		<delete file="${dist}/index.html"/>
-		<copy tofile="${dist}/index.html" file="${pre}/index.html"/>
-		<replace file="${dist}/index.html">
-			<replacefilter
-				token="@VERSION@"
-				value="-${timemark}"/>
-		</replace>
 	</target>
+	
+	
+	<target name="dist-standalone" depends="compile">
+		<exusPack destfile="${dist}/${app}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="us.exultant.${app}.exe.Rise"/>
+			</manifest>
+			<fileset file="${build}/main/**"/>
+			<zipfileset prefix="res/${app}" dir="${res}" includes="**"/>
+			<zipfileset src="${lib}/beard/beard.jar" includes="**/*.class res/**"/>
+			<zipfileset src="${lib}/ahslib/ahslib-core.jar" includes="**/*.class res/**"/>
+			<zipfileset src="${lib}/ahslib/ahslib-thread.jar" includes="**/*.class res/**"/>
+			<zipfileset src="${lib}/slf4j/slf4j-api.jar" includes="**/*.class res/**"/>
+			<zipfileset src="${lib}/javafxrt/jfxrt.jar" includes="**"/>
+		</exusPack>
+		<chmod file="${dist}/${app}.jar" perm="755"/>
+	</target>
+	
+	
+	<target name="dist" depends="dist-web, dist-standalone"/>
 	
 	
 	<target name="clean" description="clean up">
