@@ -1,9 +1,12 @@
 package us.exultant.rise.view.map;
 
+import us.exultant.ahs.core.*;
 import us.exultant.ahs.util.*;
 import us.exultant.ahs.iob.*;
+import us.exultant.ahs.thread.*;
 import us.exultant.beard.*;
 import java.io.*;
+import java.util.regex.*;
 
 public class Grider {
 	public Grider(int $width, int $height) {
@@ -78,10 +81,10 @@ public class Grider {
 		for (int $r = 0; $r < $rows; $r++) {
 			for (int $c = 0; $c < $cols; $c+=2) {
 				// alt-0 column
-				$did = ID+"-d-"+$c+"-"+$r;
+				$did = "-d-"+$c+"-"+$r;
 				$beard.eval("$('#"+ID+"-plate').append("
 						+"$('<div>')"
-						+".attr('id',		'"+$did+"')"
+						+".attr('id',		'"+ID+$did+"')"
 						+".attr('class',	'"+ID+"-img-hex')"
 						+".css('position',	'absolute')"
 						+".css('left',		'"+(48*$c)+"')"
@@ -91,7 +94,8 @@ public class Grider {
 				+");");
 				$beard.eval("$('#"+ID+"-hotmap').append("
 						+"$('<area>')"
-						+".attr('id',		'"+ID+"-hotd-"+$c+"-"+$r+"')"
+						+".attr('id',		'"+ID+"-hot"+$did+"')"
+						+".attr('class',	'"+ID+"-hotarea')"
 						+".attr('shape',	'polygon')"
 						+".attr('coords',	'"
 							+( 16+48*$c)+","+(  4+54*$r)+", "
@@ -100,16 +104,13 @@ public class Grider {
 							+( 47+48*$c)+","+( 57+54*$r)+", "
 							+( 16+48*$c)+","+( 57+54*$r)+", "
 							+(    48*$c)+","+( 30+54*$r)+"')"
-						+".click(function(){alert('"+$did+"');})"
-						+".mouseover(function(){$('#"+$did+"').css('border','1px solid');})"
-						+".mouseout( function(){$('#"+$did+"').css('border','');})"
 				+");");
 				
 				// alt-1 column
-				$did = ID+"-d-"+($c+1)+"-"+$r;
+				$did = "-d-"+($c+1)+"-"+$r;
 				$beard.eval("$('#"+ID+"-plate').append("
 						+"$('<div>')"
-						+".attr('id',		'"+$did+"')"
+						+".attr('id',		'"+ID+$did+"')"
 						+".attr('class',	'"+ID+"-img-hex')"
 						+".css('position',	'absolute')"
 						+".css('left',		'"+(48+48*$c)+"')"
@@ -119,7 +120,8 @@ public class Grider {
 				+");");
 				$beard.eval("$('#"+ID+"-hotmap').append("
 						+"$('<area>')"
-						+".attr('id',		'"+ID+"-hotd-"+$c+"-"+$r+"')"
+						+".attr('id',		'"+ID+"-hot"+$did+"')"
+						+".attr('class',	'"+ID+"-hotarea')"
 						+".attr('shape',	'polygon')"
 						+".attr('coords',	'"
 							+( 64+48*$c)+","+( 31+54*$r)+", "
@@ -128,11 +130,41 @@ public class Grider {
 							+( 95+48*$c)+","+( 84+54*$r)+", "
 							+( 64+48*$c)+","+( 84+54*$r)+", "
 							+( 48+48*$c)+","+( 57+54*$r)+"')"
-						+".click(function(){alert('"+$did+"');})"
-						+".mouseover(function(){$('#"+$did+"').css('border','1px solid');})"
-						+".mouseout( function(){$('#"+$did+"').css('border','');})"
 				+");");
 			}
 		}
+	}
+	
+	private String mapHotareaIdToTileId(String $hotid) {
+		Matcher $m = $p.matcher($hotid);
+		return $m.find() ? $m.group(1) : null;
+	}
+	private final Pattern $p = Pattern.compile(ID+"-hot-(.*)");
+	
+	
+	public void jotReactions(final Beard $beard) {
+		SimpleReactor.bind(
+				$beard.bus().bind("."+ID+"-hotarea", DomEvent.Type.MOUSEOVER),
+				new Listener<DomEvent>() { public void hear(DomEvent $evt) {
+					String $tileid = ID+"-"+mapHotareaIdToTileId($evt.srcElementId);
+					$beard.eval("$('#"+$tileid+"')"
+							+".css('border',	'#831 2px solid')"
+							+".css('left',		'-=2')"
+							+".css('top',		'-=2')"
+					);
+				}}
+		);
+		
+		SimpleReactor.bind(
+				$beard.bus().bind("."+ID+"-hotarea", DomEvent.Type.MOUSEOUT),
+				new Listener<DomEvent>() { public void hear(DomEvent $evt) {
+					String $tileid = ID+"-"+mapHotareaIdToTileId($evt.srcElementId);
+					$beard.eval("$('#"+$tileid+"')"
+							+".css('border',	'')"
+							+".css('left',		'+=2')"
+							+".css('top',		'+=2')"
+					);
+				}}
+		);
 	}
 }
