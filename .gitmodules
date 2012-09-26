@@ -6,11 +6,11 @@
 	path = lib/ahslib
 	url = https://raw.github.com/heavenlyhash-releases/ahslib-releases/master/v0.6.4.git
 	mdm = dependency
-[submodule "lib/beard"]
-	path = lib/beard
-	url = https://raw.github.com/heavenlyhash-releases/beard-releases/master/v0.4.0.git
-	mdm = dependency
 [submodule "lib/slf4j"]
 	path = lib/slf4j
 	url = https://raw.github.com/mdm-releases/slf4j-releases/master/v1.6.6.git
+	mdm = dependency
+[submodule "lib/beard"]
+	path = lib/beard
+	url = https://raw.github.com/heavenlyhash-releases/beard-releases/master/v0.6.0.git
 	mdm = dependency
