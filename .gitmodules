@@ -14,3 +14,6 @@
 	path = lib/beard
 	url = https://raw.github.com/heavenlyhash-releases/beard-releases/master/v0.6.0.git
 	mdm = dependency
+[submodule "lib/exus-build"]
+	path = lib/exus-build
+	url = https://github.com/heavenlyhash/exus-build.git
